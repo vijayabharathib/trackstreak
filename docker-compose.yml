@@ -1,0 +1,14 @@
+version: '3'
+services:
+  db:
+    image: postgres
+  web:
+    build: .
+    command: foreman start -f Procfile.dev -p 3000
+    volumes:
+      - .:/streak
+    ports:
+      - "3000:3000"
+      - "3035:3035"
+    depends_on:
+      - db
