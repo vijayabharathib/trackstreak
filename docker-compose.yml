@@ -6,9 +6,12 @@ services:
     build: .
     command: foreman start -f Procfile.dev -p 3000
     volumes:
+      - bundler_cache:/bundle
       - .:/streak
     ports:
       - "3000:3000"
       - "3035:3035"
     depends_on:
       - db
+volumes:
+  bundler_cache:
